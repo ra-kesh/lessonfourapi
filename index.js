@@ -99,6 +99,7 @@ app.get('/translate/minion.json', (req, res) => {
     var resString = "";
 
 
+  
     for (j = 0; j < splitArray.length; j++) {
         var singleString = splitArray[j];
 
@@ -107,11 +108,14 @@ app.get('/translate/minion.json', (req, res) => {
             var libString = lib[i];
             var resArray = [];
 
-            if (libString.w.toUpperCase() == singleString.toUpperCase()) {
+            if (libString.w.toUpperCase() != singleString.toUpperCase()) {
 
-                resArray.push(libString.r);
-                resString = `${resString} ${libString.r}`;
-            } else {
+                resString= `${singleString}`;   
+                            
+            } else if (libString.w.toUpperCase() == singleString.toUpperCase())  {
+               resArray.push(libString.r);
+               resString = `${resString} ${libString.r}`;
+
                 // resArray.push(singleString);
                 // resString = `${resString} ${singleString}`;
 
@@ -119,6 +123,36 @@ app.get('/translate/minion.json', (req, res) => {
         }
         console.log(resString);
     }
+
+
+
+
+
+
+    // for (j = 0; j < splitArray.length; j++) {
+    //     var singleString = splitArray[j];
+
+
+    //     for (i = 0; i < lib.length; i++) {
+    //         var libString = lib[i];
+    //         var resArray = [];
+
+    //         if (libString.w.toUpperCase() == singleString.toUpperCase()) {
+
+    //             resArray.push(libString.r);
+    //             resString = `${resString} ${libString.r}`;
+    //         } else {
+    //             // resArray.push(singleString);
+    //             // resString = `${resString} ${singleString}`;
+
+    //         }
+    //     }
+    //     console.log(resString);
+    // }
+
+
+
+    
     res.json({
         "success": {
             "total": 1
