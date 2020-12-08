@@ -23,10 +23,13 @@ app.get('/translate/minion.json', (req, res) => {
     var second = [];
 
     for (j=0;j<split.length;j++){
-      var querStr = split[i];
+      var querStr = split[j];
        if (first.w.toUpperCase() == querStr.toUpperCase()){
          second.push(first.r);
+         var third = second.join(" ");
+         console.log(third);
        }
+        
     }
    
 
@@ -36,7 +39,7 @@ app.get('/translate/minion.json', (req, res) => {
         "total": 1
     },
     "contents": {
-        "translated": second.join(" ") ,
+        "translated": third ,
         "text": req.query.text || "text missing",
         "translation": "minion"
     }
